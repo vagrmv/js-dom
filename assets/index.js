@@ -9,12 +9,12 @@ spawner.onpointerdown = function (e) {
     shiftData.left = e.clientX - spawner.getBoundingClientRect().left;
     shiftData.top = e.clientY - spawner.getBoundingClientRect().top;
 
-    const block = createBlock(e.clientX - shiftData.left, e.clientY - shiftData.top);
+    const block = createBlock(e.pageX - shiftData.left, e.pageY - shiftData.top);
     document.body.appendChild(block);
     block.setPointerCapture(e.pointerId);
 
     block.onpointermove = function (e) {
-        setPosition(this, e.clientX - shiftData.left, e.clientY - shiftData.top);
+        setPosition(this, e.pageX - shiftData.left, e.pageY - shiftData.top);
     };
     block.onpointerup = function (e) {
         this.onpointermove = null;
